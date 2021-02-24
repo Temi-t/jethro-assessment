@@ -22,11 +22,11 @@ result = cursor.fetchall()
 
 p =[]
 
-tbl = '''<tr><td>Id</td><td>Name</td><td>Sector</td><td>Industry</td><td>Phone</td><td>Email</td><td>Gender</td><td>Date_Birth</td></tr>'''
+tbl = "<tr><td>Id</td><td>Name</td><td>Sector</td><td>Industry</td><td>Phone</td><td>Email</td><td>Gender</td><td>Date_Birth</td></tr>"
 p.append(tbl)
 
 for row in result:
-    a = "<tr><td>%s</td>  "%row[0]
+    a = "<tr><td>%s</td>"%row[0]
     p.append(a)
 
     b = "<td>%s</td>"%row[1]
@@ -49,13 +49,22 @@ for row in result:
 
     h = "<td>%s</td></tr>"%row[7]
     p.append(h)
-    
+
+
+p = [i.replace("'", '') for i in p]
+#for e in p:
+    #if e == p[0] or e == p[-1]:
+     #   continue
+    #else:
+     #   p = p.replace('"', "")
+
+
 #html template
-contents = """
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+contents = '''
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta content="text/html; charset=ISO-8859-1"
+<meta content="html; charset=utf-8"
 http-equiv="content-type">
 <link rel="stylesheet" href="./style.css">
 <title>Customer Dashboard</title>
@@ -110,12 +119,8 @@ http-equiv="content-type">
     </nav>
 
 <div class="logo">
-<img src="https://content.codecademy.com/courses/web-101/unit-9/htmlcss1-img_logo-shiptoit.png" height="20px;">
+<img src="https://content.codecademy.com/courses/web-101/unit-9/htmlcss1-img_logo-shiptoit.png" >
 </div>
-
-
-
-
 
 <table>
 %s
@@ -123,7 +128,8 @@ http-equiv="content-type">
 
 </body>
 <html>
-"""%(p)
+'''%(p)
+
 
 #opening web_browser
 filename = 'webbrowser.html'
